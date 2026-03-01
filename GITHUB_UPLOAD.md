@@ -4,6 +4,17 @@
 
 ## 방법 1: GitHub CLI 사용 (권장)
 
+### 0. 로그인 (필수)
+
+저장소 생성 전에 한 번만 실행:
+
+```powershell
+gh auth login
+```
+
+- **GitHub.com** 선택 → **HTTPS** → **Login with a web browser** 또는 토큰 입력
+- 로그인 완료 후 아래 3단계 실행
+
 ### 1. GitHub CLI 설치
 
 - [GitHub CLI 다운로드](https://cli.github.com/) 또는

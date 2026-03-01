@@ -5,18 +5,30 @@ const xml2js = require('xml2js')
 const xmlParser = new xml2js.Parser()
 
 async function convertXmlToJson() {
-  try {
-    const corpXmlPath = 'c:\\Users\\yourg\\Downloads\\corp.xml'
-    const outputPath = path.join(__dirname, '..', 'public', 'data', 'companies.json')
+  const outputPath = path.join(__dirname, '..', 'public', 'data', 'companies.json')
 
-    // Create output directory if it doesn't exist
+  // Vercel/CI: corp.xml 없으면 변환 건너뛰기 (이미 커밋된 companies.json 사용)
+  const corpXmlPath = path.join(__dirname, '..', 'corp.xml')
+  const fallbackPath = 'c:\\Users\\yourg\\Downloads\\corp.xml'
+  const xmlPath = fs.existsSync(corpXmlPath) ? corpXmlPath : (fs.existsSync(fallbackPath) ? fallbackPath : null)
+
+  if (!xmlPath) {
+    if (fs.existsSync(outputPath)) {
+      console.log('⏭️  corp.xml not found, using existing public/data/companies.json')
+      return
+    }
+    console.error('❌ corp.xml not found and companies.json missing. Add corp.xml to project root or run convert locally first.')
+    process.exit(1)
+  }
+
+  try {
     const outputDir = path.dirname(outputPath)
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true })
     }
 
     console.log('Reading corp.xml...')
-    const xmlData = fs.readFileSync(corpXmlPath, 'utf-8')
+    const xmlData = fs.readFileSync(xmlPath, 'utf-8')
 
     console.log('Parsing XML...')
     const result = await xmlParser.parseStringPromise(xmlData)

@@ -1,14 +1,4 @@
 {
-  "env": [
-    {
-      "key": "OPENDART_API_KEY",
-      "description": "OpenDart API Key from 금융감독원"
-    },
-    {
-      "key": "GEMINI_API_KEY",
-      "description": "Google Gemini API Key"
-    }
-  ],
   "buildCommand": "npm run build",
-  "outputDirectory": ".next"
+  "framework": "nextjs"
 }

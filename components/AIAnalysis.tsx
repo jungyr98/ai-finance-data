@@ -196,7 +196,7 @@ export default function AIAnalysis({
                   <ul className="text-sm mt-2 list-disc list-inside space-y-1">
                     <li>내일 다시 시도해주세요</li>
                     <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-75">Google AI Studio에서 유료 플랜 업그레이드</a></li>
-                    <li><strong>"자동 분석"</strong> 탭에서 기본 분석을 사용</li>
+                    <li><strong>&quot;자동 분석&quot;</strong> 탭에서 기본 분석을 사용</li>
                   </ul>
                   <p className="text-xs mt-2">
                     자세한 정보는 프로젝트의 <code className="bg-black bg-opacity-20 px-1 rounded">GEMINI_API_GUIDE.md</code> 참고
